@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeedCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /* 
+        这个题用消消乐的做法最简单，不管括号以何种顺序放置，有效的排列中最中间一定是()[]{}中的一个；
+        反复删掉将字符串中的()[]{}，最差的情况需要length/2次
+    */
+function test(){
+    var array=s.split('');
+    var chars = ["(",")","{","}","[","]"];
+    var f = ["(","{","["];
+    var b = [")","}","]"];
+    if (array.length%2==1){
+        return false;
+    }
+
+    var array2=[array[0]];
+    var char,index;
+    for(var i=1;i<array.length;i++){
+        char = array[i];
+        index = chars.indexOf(char);
+
+        if(f.includes(char)){
+            array2.push(char);
+        }
+        else if(b.includes(char))
+        {
+            if(chars[index-1]==array2.pop()){
+            }
+            else{
+                return false;  
+            }
+        }
+    }
+
+    if(array2.length == 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeedCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        这个题目不难，将nums1的前m个元素取出和nums2拼接，再进行排序即可，但是有两个问题
+        1、sort是将元素转化为字符串进行排序，也就是说会将10放在2后面，所以需要填入一个比值函数规定排序规则，且此种实现方式的时间复杂度和内存使用都很高（反复调用比值函数）
+        2、nums1不知道为什么直接赋值的不成功，需要对其元素一个一个赋值
+        因为nums1是array对象，所以是一个指针，指针作为参数传入函数，可以对元素进行，但是如果直接赋值另一个array对象，会给形参分配另一个内存空间
+    */
+    var nums1 = [4, 0, 0, 0, 0, 0]
+    var m = 1
+    var nums2 = [1, 2, 3, 5, 6]
+    var n = 5
+    var num = []
+    test(nums1, m, nums2, n);
+    console.log(nums1);
+    // function test(nums1, m, nums2, n){
+    //     num = nums1.slice(0, m).concat(nums2).sort(function(a, b){return a-b});
+    //     console.log(num);
+    //     for(var i=0;i<m+n;i++){
+    //         nums1[i] = num[i];
+    //     }       
+    // }
+    function test(nums1, m, nums2, n){
+        var insert = 0;
+        for(var i=0;i<n;i++){    
+            console.log("i", i)       
+            for(var j=insert;j<m+i;j++){
+                console.log("j", j)
+                if(nums1[j]>nums2[i]){
+                    nums1.splice(j, 0, nums2[i]);
+                    insert = j;
+                    console.log("insert");
+                    console.log(nums1)
+                    break
+                }
+            }
+            if(nums1.length!=m+n+i+1){
+                for(var k=i;k<n;k++){
+                    nums1.splice(m+k, 0, nums2[k]);
+                    console.log(nums1)
+                }
+                break
+            }
+        }   
+        nums1.splice(m+n, n);
+        console.log(nums1);    
+    }
+
+</script>
+
+</body>
+</html>
