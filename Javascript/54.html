@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+    */
+    var matrix = [];
+    // for(var i=0;i<3;i++){
+    //     matrix[i] = [];
+    //     for(var j=0;j<4;j++){
+    //         matrix[i][j] = i+j;
+    //     }
+    // }
+    console.log(JSON.parse(JSON.stringify(matrix)));
+    var spiralOrder = function(matrix) {
+        var m = matrix.length;
+        var n = matrix[0].length;
+        var row = 0;
+        var column = 0;
+        var state = 0;
+        var up = 1;
+        var down = m-1;
+        var left = 0;
+        var right = n-1;
+        var result = [];
+        for(var i=0;i<n*m;i++){
+            result[i] = matrix[row][column];
+            console.log(JSON.parse(JSON.stringify(result)));
+            switch(state){
+                case 0:
+                    column++;
+                    if(column>right){
+                        column=right;
+                        right--;
+                        state = 1; 
+                        row++;
+                    }
+                break;
+                case 1:
+                    row++;
+                    if(row>down){
+                        row=down;
+                        down--;
+                        state = 2; 
+                        column--;
+                    }
+                break;
+                case 2:
+                    column--;
+                    if(column<left){
+                        column=left;
+                        left++;
+                        state = 3; 
+                        row--;
+                    }
+                break;
+                case 3:
+                    row--;
+                    if(row<up){
+                        row=up;
+                        up++;
+                        state = 0; 
+                        column++;
+                    }
+                break;            
+            }
+        }
+        return result;
+    };
+    console.log(spiralOrder(matrix));
+</script>
+
+</body>
+</html>

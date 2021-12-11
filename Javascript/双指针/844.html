@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        1、JS中String不能像c一样进行指针操作，需要先转换成字符数组
+    */
+    var s = "ab#c";
+    var t = "ad#c";
+    var backspaceCompare = function(s, t) {
+        s = s.split('');
+        t = t.split('');
+        var fast = 0;
+        var slow = 0;
+        for(;fast<s.length;fast++){
+            console.log(fast, s, slow);
+            if(s[fast]!='#'){
+                s[slow] = s[fast];
+                slow++;
+            }
+            else{
+                slow--;
+                if(slow<0){
+                    slow=0;
+                }
+            }
+        }
+        var fast1 = 0;
+        var slow1 = 0;
+        for(;fast1<t.length;fast1++){
+            console.log(fast1, t, slow1);
+            if(t[fast1]!='#'){
+                t[slow1] = t[fast1];
+                slow1++;
+            }
+            else{
+                slow1--;
+                if(slow1<0){
+                    slow1=0;
+                }
+            }
+        }
+        console.log(s, t, slow, slow1);
+        if(slow==slow1){
+            for(var i=0;i<slow;i++){
+                if(s[i]!=t[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+        else{
+            return false;
+        }
+    };
+    backspaceCompare(s, t);
+</script>
+
+</body>
+</html>

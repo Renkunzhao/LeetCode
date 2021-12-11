@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        
+    */
+    var nums = [-7,-3,2,3,11];
+    var sortedSquares = function(nums) {
+        var left=0;
+        var right=nums.length-1;
+        var nums_new=[];
+        for(var i=nums.length-1;i>=0;i--){
+            if(nums[right]**2>nums[left]**2){
+                nums_new[i] = nums[right]**2;
+                right--;
+            }
+            else{
+                nums_new[i] = nums[left]**2;
+                left++
+            }
+        }
+        return nums_new;
+    };
+    sortedSquares(nums);
+</script>
+
+</body>
+</html>

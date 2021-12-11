@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        这个题目不难，将nums1的前m个元素取出和nums2拼接，再进行排序即可，但是有两个问题
+        1、sort是将元素转化为字符串进行排序，也就是说会将10放在2后面，所以需要填入一个比值函数规定排序规则，且此种实现方式的时间复杂度和内存使用都很高（反复调用比值函数）
+        2、nums1不知道为什么直接赋值的不成功，需要对其元素一个一个赋值
+        因为nums1是array对象，所以是一个指针，指针作为参数传入函数，可以对元素进行，但是如果直接赋值另一个array对象，会给形参分配另一个内存空间
+    */
+    var nums1 = [4, 0, 0, 0, 0, 0]
+    var m = 1
+    var nums2 = [1, 2, 3, 5, 6]
+    var n = 5
+    var num = []
+    var merge = function(nums1, m, nums2, n) {
+        var ptr1 = m-1;
+        var ptr2 = n-1;
+        for(var i=m+n-1;i>=0;i--){
+            if(nums1[ptr1]>=nums2[ptr2]){
+                nums1[i] = nums1[ptr1];
+                ptr1--;
+            }
+            else{
+                nums1[i]=nums2[ptr2];
+                ptr2--;
+            }
+
+        }
+    };
+    console.log(merge(nums1, m, nums2, n));
+    console.log(nums1);
+</script>
+
+</body>
+</html>

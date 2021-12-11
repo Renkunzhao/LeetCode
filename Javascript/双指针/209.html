@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+    */
+    var nums = [2,3,1,2,4,3];
+    var target = 7;
+    var minSubArrayLen = function(target, nums) {
+        var slow=0;
+        var fast=0;
+        var sum=0;
+        var len=nums.length+1;
+        for(;fast<nums.length;fast++){
+            sum += nums[fast];
+            if(sum>=target){
+                while(sum>=target){
+                    sum -= nums[slow];
+                    slow++;
+                }
+                len = (len < fast-slow+2) ? len : fast-slow+2;
+            }
+        }
+        if(len==nums.length+1){
+            return 0;
+        }
+        else{
+            return len;
+        }
+    };
+    console.log(minSubArrayLen(target, nums));
+</script>
+
+</body>
+</html>

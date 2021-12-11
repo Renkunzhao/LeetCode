@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        1、
+    */
+    var s = "ab#c";
+    var t = "ad#c";
+    var backspaceCompare = function(s, t) {
+        var ptrs = s.length-1;
+        var ptrt = t.length-1;
+        var ns = 0;
+        var nt = 0;
+        while(ptrs>=0&&ptrt>=0){
+            if(s[ptrs]=='#'){
+                ptrs--;
+                ns++;
+            }
+            else if(t[ptrt]=='#'){
+                ptrt--;
+                nt++;
+            }
+            else{
+                if(s[ptrs-ns]==t[ptrt-nt]){
+                    ptrs = ptrs-ns-1;
+                    ptrt = ptrt-nt-1;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        if(ptrt!=ptrs){
+            return true;
+        }
+        else{
+            return false;
+        }
+    };
+    backspaceCompare(s, t);
+</script>
+
+</body>
+</html>

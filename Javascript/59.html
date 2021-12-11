@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+    */
+    var n = 4;
+    var generateMatrix = function(n) {
+        var row = 0;
+        var column = 0;
+        var matrix = [];
+        for(var i=0;i<n;i++){
+            matrix[i] = [];
+            for(var j=0;j<n;j++){
+                matrix[i][j] = 0;
+            }
+        }
+        console.log(JSON.parse(JSON.stringify(matrix)));
+        var state = 0;
+        var up = 1;
+        var down = n-1;
+        var left = 0;
+        var right = n-1;
+        for(var i=1;i<n**2+1;i++){
+            matrix[row][column] = i;
+            console.log(JSON.parse(JSON.stringify(matrix)));
+            switch(state){
+                case 0:
+                    column++;
+                    if(column>right){
+                        column=right;
+                        right--;
+                        state = 1; 
+                        row++;
+                    }
+                break;
+                case 1:
+                    row++;
+                    if(row>down){
+                        row=down;
+                        down--;
+                        state = 2; 
+                        column--;
+                    }
+                break;
+                case 2:
+                    column--;
+                    if(column<left){
+                        column=left;
+                        left++;
+                        state = 3; 
+                        row--;
+                    }
+                break;
+                case 3:
+                    row--;
+                    if(row<up){
+                        row=up;
+                        up++;
+                        state = 0; 
+                        column++;
+                    }
+                break;            
+            }
+
+        }
+    };
+    console.log(generateMatrix(n));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        
+    */
+    var nums = [0,1,2,2,3,0,4,2];
+    var removeDuplicates = function(nums) {
+        var fast = 0;
+        var slow = 0;
+        for(;fast<nums.length;fast++){
+            if(nums[fast]!=nums[slow]){
+                slow++;
+                nums[slow] = nums[fast];
+            }
+        }
+        return slow+1;
+    };
+    removeDuplicates(nums);
+</script>
+
+</body>
+</html>

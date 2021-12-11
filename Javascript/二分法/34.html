@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        1、二分法一般用于查询、插入不重复有序数组，经过变化可以寻找有序数组中重复元素的起始、终止位置
+        2、注意避免死循环
+        3、闭区间不能越过目标值大于1，开区间不能越过目标值
+        4、左右闭区间、左开右闭、左闭右开都有一瞬间左右区间重合，不过后两者只能在目标值左侧、右侧重合（由三可证）
+        5、如果没能找到目标值，与目标值邻近的值为左右闭区间middle、左开右闭left=right、左闭右开left=right；
+        6、左开右闭用ceil、左闭右开用floor，左右闭区间都可以
+    */
+    var nums = [5,7,7,8,8,10];
+    var target = 8;
+    var searchRange = function(nums, target) {
+        var left = 0;
+        var right = nums.length - 1;
+        var middle;
+        while(left<right){
+            middle = left + Math.floor((right-left)/2);
+            if(nums[middle]>target){
+                right = middle;
+            }
+            else if(nums[middle]<target){
+                left = middle + 1;
+            }
+            else{
+                right = middle;
+            }
+        }    
+        if(nums[right]==target){
+            var start = right;
+        }
+        else{
+            return [-1, -1];
+        }
+        left = 0;
+        right = nums.length - 1;
+        while(left<right){
+            middle = left + Math.ceil((right-left)/2);
+            if(nums[middle]>target){
+                right = middle - 1;
+            }
+            else if(nums[middle]<target){
+                left = middle;
+            }
+            else{
+                left = middle;
+            }
+        }
+        return [start, left];
+    };
+    console.log(searchRange(nums, target));
+</script>
+
+</body>
+</html>

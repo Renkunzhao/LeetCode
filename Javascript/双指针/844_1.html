@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        1、
+    */
+    var s = "ab#c";
+    var t = "ad#c";
+    var backspaceCompare = function(s, t) {
+        var fast = 0;
+        var slow = 0;
+        for(;fast<s.length;fast++){
+            console.log(fast, s, slow);
+            if(s[fast]!='#'){
+                s = s.substring(0, slow) + s[fast] + s.substring(slow + 1);
+                slow++;
+            }
+            else{
+                slow--;
+                if(slow<0){
+                    slow=0;
+                }
+            }
+        }
+        var fast1 = 0;
+        var slow1 = 0;
+        for(;fast1<t.length;fast1++){
+            console.log(fast1, t, slow1);
+            if(t[fast1]!='#'){
+                t = t.substring(0, slow1) + t[fast1] + t.substring(slow1 + 1);
+                slow1++;
+            }
+            else{
+                slow1--;
+                if(slow1<0){
+                    slow1=0;
+                }
+            }
+        }
+        console.log(s, t, slow, slow1);
+        if(slow==slow1){
+            for(var i=0;i<slow;i++){
+                if(s[i]!=t[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+        else{
+            return false;
+        }
+    };
+    backspaceCompare(s, t);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>LeetCode</title>
+</head>
+<body>
+
+<button onclick="test()">test</button>
+<script>
+    /*
+        1、本题目思路为冒泡算法进行排序，在比较之前先将目标val值改为max，确保被排到数组最后
+        2、需要注意对于冒泡算法，如果数组长度只有1，则相当于已经排好了序，所以需要特殊讨论
+    */
+    var nums = [0,1,2,2,3,0,4,2];
+    var moveZeroes = function(nums) {
+        var fast = 0;
+        var slow = 0;
+        for(;fast<nums.length;fast++){
+            if(nums[fast]!=0){
+                nums[slow] = nums[fast];
+                slow++;
+            }
+        }
+        for(;slow<nums.length;slow++){
+            nums[slow] = 0;
+        }
+    };
+    moveZeroes(nums);
+</script>
+
+</body>
+</html>
